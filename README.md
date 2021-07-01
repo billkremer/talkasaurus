@@ -1,3 +1,9 @@
+https://patorjk.com/software/taag/#p=display&h=1&f=Calvin%20S&t=Talkasaurus
+https://emojipedia.org/sauropod/
+https://dino.wikia.org/wiki/Triceratops/Gallery
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

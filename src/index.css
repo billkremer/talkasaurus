@@ -2,16 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Cherry+Swash:wght@400;700&family=Jura:wght@400;700&family=Neucha&family=Slackey&display=swap');
+
+/* font-family: 'Cherry Swash', cursive;
+font-family: 'Jura', sans-serif;
+font-family: 'Neucha', cursive;
+font-family: 'Slackey', cursive; */
+
+:root {
+  --dino-blue: #227c9d;
+  --dino-green: #17c3b2;
+  --dino-yellow: #ffcb77;
+  --dino-white: #fef9ef;
+  --dino-red: #fe6d73;
+
+  /* --dino-white-white: white; */
+  --dino-black: black;
+  --dino-almost-black: #282c34;
+
+  /* --dino-bg-blue: #227c9d80;
+  --dino-bg-green: #17c3b280;
+  --dino-bg-yellow: #ffcb7780;
+  --dino-bg-white: #fef9ef00;
+  --dino-bg-red: #fe6d7380;
+  --dino-bg-black: black;
+  --dino-bg-almost-black: #282c3480; */
+
+}
+/* https://coolors.co/227c9d-17c3b2-ffcb77-fef9ef-fe6d73 */
+
+
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  padding: 25px;
+  /* margin: 25px; */
+  font-size: 16px;
+
+  background: var(--dino-green);  /* fallback for old browsers */
+  background: linear-gradient(to bottom right, var(--dino-blue) 40%, var(--dino-green) 75%, var(--dino-yellow)); 
+  color: var(--dino-white);
+  font: 1.5rem 'Jura', serif;
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+	font: 4.5rem 'Slackey', cursive;
+	/* font: 4.5rem 'Neucha', cursive; */
+  /* color: var(--dino-white); */
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin: 0 0 0 0;
+}
+
+h2 {
+	font: 1.5rem 'Jura', serif;
+
+  /* color: var(--dino-white); */
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin: 0 0 0 0;
+}
+
+input {
+  color: var(--dino-almost-black);
+}
+
+@media (max-width: 768px) {
+  body {
+    margin: 5px;
+  }
+
+  h2 {
+    font-size: 1em;
+  }
+
+
 }

@@ -1,0 +1,23 @@
+
+.DinoMenu button {
+  /* background-color: var(--dino-red); */
+  /* color: var(--dino-red); */
+}
+
+
+.dino-button-group .dino-button:first-child button {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-color: var(--dino-almost-black);
+}
+
+.dino-button-group .dino-button:last-child button {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-color: transparent;
+}
+
+.dino-button input:checked + div {
+  background-color: var(--dino-blue);
+  color: var(--dino-white);
+}
