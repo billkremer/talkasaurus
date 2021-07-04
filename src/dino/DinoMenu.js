@@ -9,7 +9,7 @@ import './DinoMenu.css';
     super(props);
     this.state = {
       dinoChecked: "Triceratops",
-      voiceChecked: "0",
+      voiceChecked: "Abby",
       dinos: [
         {
           name: "Triceratops",
@@ -33,14 +33,35 @@ import './DinoMenu.css';
         {
           dinoName: "Benny",
           lang: "en-US",
-          name: "Dave",
+          name: "Fiona",
           rate: 0.6,
           pitch: 1.4, 
         },
         {
-          dinoName: "Carl",
+          dinoName: "Fred",
+          lang: "en-US",
+          name: "Fred",
+          rate: 0.6,
+          pitch: 1.4,
+        },
+        {
+          dinoName: "Gary",
+          lang: "en-US",
+          name: "Google US English",
+          rate: 0.6,
+          pitch: 1.4, 
+        },
+        {
+          dinoName: "Darla",
           lang: "en-US",
           name: "Samantha",
+          rate: 0.6,
+          pitch: 1.4,
+        },
+        {
+          dinoName: "Carl",
+          lang: "en-US",
+          name: "Victoria",
           rate: 0.6,
           pitch: 1.4, 
         },
@@ -58,16 +79,25 @@ import './DinoMenu.css';
   }
 
   onChangeDinoValue(event) {
+    // the name of the dino
     this.setState({
       dinoChecked: event.target.value
     });
   }
   onChangeVoiceValue(event) {
-    // the index of the voice
+    // the dinoName of the voice
     this.setState({
       voiceChecked: event.target.value
     });
   }
+
+  // getVoiceDataByIndex(index) {
+  //   return this.state.voices[index];
+  // }
+  getVoiceDataByDinoName(itemName) {
+    return this.state.voices.find( ({dinoName}) => dinoName === itemName );
+  }
+
 
   render() {
     const buttonClassName = "w-full px-2 py-2 hover:bg-red-dark border-b border-almostblack focus:font-bold text-md text-almostblack block"
@@ -91,11 +121,11 @@ import './DinoMenu.css';
 
     let voiceMenu = this.state.voices.map((item, index) => (
 
-      <div className="dino-button" key={index}>
+      <div className="dino-button" key={item.dinoName}>
         <label htmlFor={"voice-" + item.dinoName} >
 
-          <input type="radio" id={"voice-" + item.dinoName} name="voice" value={index} className="hidden"
-            checked={this.state.voiceChecked === index.toString() }
+          <input type="radio" id={"voice-" + item.dinoName} name="voice" value={item.dinoName} className="hidden"
+            checked={this.state.voiceChecked === item.dinoName }
             onChange={this.onChangeVoiceValue} />
           <div
             className={buttonClassName} >

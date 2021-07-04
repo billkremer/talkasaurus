@@ -5,13 +5,13 @@
 }
 
 
-.dino-button-group .dino-button:first-child button {
+.dino-button-group .dino-button:first-child div {
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   border-bottom-color: var(--dino-almost-black);
 }
 
-.dino-button-group .dino-button:last-child button {
+.dino-button-group .dino-button:last-child div {
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   border-bottom-color: transparent;

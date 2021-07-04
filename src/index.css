@@ -56,9 +56,8 @@ h1 {
 }
 
 h2 {
-	font: 1.5rem 'Jura', serif;
+  font: 1.5rem 'Slackey', cursive;
 
-  /* color: var(--dino-white); */
   margin-block-start: 0;
   margin-block-end: 0;
   margin: 0 0 0 0;

@@ -25,7 +25,8 @@ export default class App extends Component {
         <DinoHeader
           date={date.substr(0, 15).trim()}
         />
-        <DinoText></DinoText>
+        <DinoText
+          name="Alex" ></DinoText>
         <div className="md:container flex flex-row">
           <DinoMenu></DinoMenu>
           <DinoMain></DinoMain>
@@ -51,6 +52,7 @@ export default class App extends Component {
     let mm5 = "https://github.com/billkremer/talkasaurus "
     console.log("Listen up!\n%c" + mm1 + '%c' + mm2 + '%c' + mm3 + '%c' + mm4 + '%c' + mm5, mm1style, mm2style, mm3style, mm4style, mm5style);
 
+    console.log(Date()); // TODO remove for prod
   }
 
 }
