@@ -1,9 +1,4 @@
-
 import React, { Component } from 'react';
-// import './DinoMenu.css';
-
-
-
 export default class DinoText extends Component {
   constructor(props) {
     super(props);
@@ -15,27 +10,13 @@ export default class DinoText extends Component {
       synth: window.speechSynthesis,
       currentVoice: {},
       allVoices: null,
-      speaking: false,
+      // speaking: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.getVoices = this.getVoices.bind(this);
     // this.utterThis.onend = this.utterThis.onend.bind(this);
     this.speak = this.speak.bind(this);
-    this.stoppedSpeaking = this.stoppedSpeaking.bind(this);
 
-  }
-
-
-  componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
-    if (this.props.voice !== prevProps.voice) {
-
-    }
-    // this.setState({
-    //   allVoices: this.state.synth,
-    // this.getVoices()
-
-    // })
   }
 
 
@@ -47,23 +28,20 @@ export default class DinoText extends Component {
 
   getVoices() {
     if (this.state.allVoices === null) {
-      // let av = 
+      let av = this.state.synth.getVoices();
+      let avFiltered = av.filter(({ lang }) => (lang.includes("en-US") ));
+
+      this.props.gotVoices(avFiltered);
+
       this.setState({
-        allVoices: this.state.synth.getVoices(),
-      })
+        allVoices: avFiltered,
+      });
     }
   }
 
-  stoppedSpeaking() {
-    this.setState({
-      speaking: false,
-    });
-  }
-
   speak() {
-    this.setState({
-      speaking: true,
-    })
+    this.props.isSpeaking(true);
+   // use onstart instead?
 
     if (this.state.synth.speaking) {
       console.error('already speaking');
@@ -82,21 +60,36 @@ export default class DinoText extends Component {
 
     let utterThis = new SpeechSynthesisUtterance(textToUtter);
 
-//  let speaking;
-    utterThis.onend = function (event) {
-      console.log("I'm done talking");
-      // speaking = false;
-      this.setState({
-        speaking: false,
-      })
-      // console.log(speaking);
+
+    utterThis.onstart = function (event) {
+      console.log("I'm started talking");
+      this.props.isSpeaking(true);
+
       // TODO this should stop the animation
     }.bind(this);
+
+    utterThis.onend = function (event) {
+      console.log("I'm done talking");
+      this.props.isSpeaking(false);
+
+
+      // TODO this should stop the animation
+    }.bind(this);
+
+    utterThis.onboundary = function (event) {
+      // console.log(event.name + ' boundary reached after ' + event.elapsedTime + ' milliseconds.');
+      // console.log(event);
+      this.props.onBoundary(event.elapsedTime);
+
+    }.bind(this);
+      // TODO this should trigger animation again
+
+
     utterThis.onerror = function (event) {
       console.error('SpeechSynthesisUtterance.onerror');
     }
 
-    utterThis.voice = this.state.allVoices.find( ({ name }) => name === this.props.name     )
+    utterThis.voice = this.state.allVoices.find(({ name }) => name === this.props.voiceName     )
 
     // lang = {props.voice.lang}
     // name = {props.voice.name}
