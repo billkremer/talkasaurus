@@ -12,7 +12,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentDino: "Triceratops",
+      currentDino: "Tyrannosaurus",
       currentVoice: "Abby",
       speaking: false,
       boundary: '',
@@ -33,8 +33,6 @@ export default class App extends Component {
 
   handleDinoChange(currentDino) {
     this.setState({currentDino: currentDino});
-    console.log(currentDino);
-    console.log(dinoConfig.dinos[0].name)
   }
   handleVoiceChange(currentVoice) {
     this.setState({ currentVoice: currentVoice });
@@ -43,11 +41,9 @@ export default class App extends Component {
     this.setState({ speaking: speaking });
   }
   handleBoundary(boundary) {
-    // let x = this.state.boundary + ' ' + boundary;
     this.setState({ boundary: boundary });
   }
   gotVoices(voices) {
-    // let x = this.state.boundary + ' ' + boundary;
     this.setState({ allVoices: voices });
 
 
@@ -62,19 +58,14 @@ export default class App extends Component {
     let date = Date();
     return (
       <div className="Appnew" >
-        <DinoHeader
-          date={date.substr(0, 15).trim()}
-        />
-        <DinoText
-          
+        <DinoHeader/>
+        <DinoText        
           voiceName="Alex"
           currentVoice={this.state.currentVoice}
           isSpeaking={this.handleSpeaking}
           onBoundary={this.handleBoundary}
           gotVoices={this.gotVoices}
-
-          
-          ></DinoText>
+        ></DinoText>
         <div className="md:container flex flex-row">
           <DinoMenu
             onDinoChange={this.handleDinoChange}
@@ -88,8 +79,6 @@ export default class App extends Component {
             boundary={this.state.boundary}
           />
         </div>
-
-
       </div>
     );
   }

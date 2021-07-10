@@ -5,7 +5,7 @@ class DinoMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dinoChecked: "Triceratops",
+      dinoChecked: this.props.dinos[0].name,
       voiceChecked: "Abby",
         
     };

@@ -14,12 +14,9 @@ export default class DinoText extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.getVoices = this.getVoices.bind(this);
-    // this.utterThis.onend = this.utterThis.onend.bind(this);
     this.speak = this.speak.bind(this);
 
   }
-
-
 
   componentDidMount() {
     setTimeout(() => { this.getVoices(); }, 1000);
@@ -41,7 +38,6 @@ export default class DinoText extends Component {
 
   speak() {
     this.props.isSpeaking(true);
-   // use onstart instead?
 
     if (this.state.synth.speaking) {
       console.error('already speaking');
@@ -62,25 +58,17 @@ export default class DinoText extends Component {
 
 
     utterThis.onstart = function (event) {
-      console.log("I'm started talking");
       this.props.isSpeaking(true);
-
       // TODO this should stop the animation
     }.bind(this);
 
     utterThis.onend = function (event) {
-      console.log("I'm done talking");
       this.props.isSpeaking(false);
-
-
       // TODO this should stop the animation
     }.bind(this);
 
     utterThis.onboundary = function (event) {
-      // console.log(event.name + ' boundary reached after ' + event.elapsedTime + ' milliseconds.');
-      // console.log(event);
       this.props.onBoundary(event.elapsedTime);
-
     }.bind(this);
       // TODO this should trigger animation again
 
@@ -99,7 +87,7 @@ export default class DinoText extends Component {
     utterThis.lang = "en-US";
     utterThis.pitch = 0.6;
     utterThis.rate = 1.4;
-    console.log(utterThis);
+    // console.log(utterThis);
     this.state.synth.speak(utterThis);
 
   }
