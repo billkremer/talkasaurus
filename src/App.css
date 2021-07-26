@@ -4,7 +4,10 @@
 body {
 
 }
-
+svg {
+  position: absolute;
+  height: 100%;
+}
 
 .Appnew {
   /* text-align: center; */

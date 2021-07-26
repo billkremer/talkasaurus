@@ -12,8 +12,8 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentDino: "Tyrannosaurus",
-      currentVoice: "Abby",
+      currentDino: dinoConfig.dinos[0].name,
+      currentVoice: dinoConfig.voices[0].voiceName,
       speaking: false,
       boundary: '',
       allVoices: [],
@@ -55,7 +55,6 @@ export default class App extends Component {
 
 
   render() {
-    let date = Date();
     return (
       <div className="Appnew" >
         <DinoHeader/>

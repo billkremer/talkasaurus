@@ -8,7 +8,7 @@ export default class DinoMain extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      intervalID: '',
+      intervalIDs: [],
       dinoeye: {},
       dinomouth: {},
 
@@ -16,19 +16,22 @@ export default class DinoMain extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.speaking && (this.props.boundary != prevProps.boundary)) {
+    if (this.props.speaking && (this.props.boundary.toString() !== prevProps.boundary.toString())) {
       this.mouthTalk();
     }
 
-    if (this.props.dino != prevProps.dino) {
-      window.clearInterval(this.state.intervalID);
-
+    if (this.props.dino !== prevProps.dino) {
+      for (let i = 0; i < this.state.intervalIDs.length; i++) {
+        window.clearInterval(this.state.intervalIDs[i]);
+      }
+      
       setTimeout(() => {
         this.setState({
           dinoeye: document.querySelector('#' + this.props.dino + ' #closed-eye'),
           dinomouth: document.querySelector('#' + this.props.dino + ' #mouth-group'),
         });
         this.eyeBlink();
+        this.setState({ intervalIDs: this.state.intervalIDs.slice(-5),});
       }, 4000);
 
     }
@@ -48,42 +51,41 @@ export default class DinoMain extends Component {
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.state.intervalID);
+    for (let i = 0; i < this.state.intervalIDs.length; i++) {
+      window.clearInterval(this.state.intervalIDs[i]);
+    }
   }
 
   eyeBlink() {
-    // find className closed-eye and toggle display: none; for 500ms 
-    // randomly every 2500 to 6000 ms
-    let minTime = 4000;
-    let maxTime = 7500; //ms
-
+    // find className closed-eye and toggle display: none; for 250ms 
+    // randomly every 7 - 12 seconds
+    let minTime = 7000;
+    let maxTime = 12000; //ms
     let rand = 0;
+
+    let intvalIDs = this.state.intervalIDs;
 
     let intID = window.setInterval(() => {
       rand = Math.floor(Math.random() * (maxTime - minTime + 1));
-
       setTimeout(() => {
-        this.state.dinoeye.classList.toggle("closed-eye");
+        this.state.dinoeye.classList.remove("closed-eye");
       }, rand);
       setTimeout(() => {
-        this.state.dinoeye.classList.toggle("closed-eye");
+        this.state.dinoeye.classList.add("closed-eye");
       }, rand + 250);
 
     }, minTime )
 
-    this.setState({ intervalID: intID });
-
-
-
+    intvalIDs.push(intID);
+    this.setState({ intervalIDs: intvalIDs });
   };
 
 
   mouthTalk() {
-    this.state.dinomouth.classList.toggle("hidden");
+    this.state.dinomouth.classList.add("hidden");
     setTimeout(() => {
-      this.state.dinomouth.classList.toggle("hidden");
+      this.state.dinomouth.classList.remove("hidden");
     }, 200);
-
   }
 
   render() {
@@ -96,7 +98,7 @@ export default class DinoMain extends Component {
       currentDino = <Sauropod />
     }
     return (
-      <div className="DinoMain flex-grow" >
+      <div className="DinoMain flex-grow relative" >
         {currentDino}
       </div>
     ) 
