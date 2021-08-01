@@ -51,7 +51,7 @@ export default class DinoMain extends Component {
         dinomouth: document.querySelector('#' + this.props.dino + ' #mouth-group'),
       });
       this.eyeBlink();
-    }, 4000);
+    }, 2000);
   }
 
   eyeBlink() {
