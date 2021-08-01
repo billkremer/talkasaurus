@@ -26,15 +26,15 @@ class DinoMenu extends Component {
   }
 
   onChangeVoiceValue(event) {
-    // the dinoName of the voice
+    // the dinoVoiceName of the voice
     this.setState({
       voiceChecked: event.target.value
     });
     this.props.onVoiceChange(event.target.value);
   }
 
-  // getVoiceDataByDinoName(itemName) {
-  //   return this.props.voices.find( ({dinoName}) => dinoName === itemName );
+  // getVoiceDataBydinoVoiceName(itemName) {
+  //   return this.props.voices.find( ({dinoVoiceName}) => dinoVoiceName === itemName );
   // }
 
   render() {
@@ -59,15 +59,15 @@ class DinoMenu extends Component {
 
     let voiceMenu = this.props.voices.map((item, index) => (
 
-      <div className="dino-button" key={index + item.dinoName}>
-        <label htmlFor={"voice-" + item.dinoName} >
+      <div className="dino-button" key={index + item.dinoVoiceName}>
+        <label htmlFor={"voice-" + item.dinoVoiceName} >
 
-          <input type="radio" id={"voice-" + item.dinoName} name="voice" value={item.dinoName} className="hidden"
-            checked={this.state.voiceChecked === item.dinoName }
+          <input type="radio" id={"voice-" + item.dinoVoiceName} name="voice" value={item.dinoVoiceName} className="hidden"
+            checked={this.state.voiceChecked === item.dinoVoiceName }
             onChange={this.onChangeVoiceValue} />
           <div
             className={buttonClassName} >
-            {item.dinoName}
+            {item.dinoVoiceName}
               </div>
         </label>
       </div>

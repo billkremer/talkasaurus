@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './DinoMain.css';
 import Tyrannosaurus from './../img/Tyrannosaurus.js';
 import Triceratops from './../img/Triceratops.js';
 import Sauropod from './../img/Sauropod.js';
+import './DinoMain.css';
 
 export default class DinoMain extends Component {
   constructor(props) {
@@ -11,9 +11,10 @@ export default class DinoMain extends Component {
       intervalIDs: [],
       dinoeye: {},
       dinomouth: {},
-
     };
+    this.getDinoSelectorsAndStartBlink = this.getDinoSelectorsAndStartBlink.bind(this);
   }
+
 
   componentDidUpdate(prevProps) {
     if (this.props.speaking && (this.props.boundary.toString() !== prevProps.boundary.toString())) {
@@ -23,37 +24,34 @@ export default class DinoMain extends Component {
     if (this.props.dino !== prevProps.dino) {
       for (let i = 0; i < this.state.intervalIDs.length; i++) {
         window.clearInterval(this.state.intervalIDs[i]);
-      }
+      } // if user changes the dinos too quickly they blink too much, so need to ensure all intervals get cleared.
       
+      this.getDinoSelectorsAndStartBlink();
+
       setTimeout(() => {
-        this.setState({
-          dinoeye: document.querySelector('#' + this.props.dino + ' #closed-eye'),
-          dinomouth: document.querySelector('#' + this.props.dino + ' #mouth-group'),
-        });
-        this.eyeBlink();
-        this.setState({ intervalIDs: this.state.intervalIDs.slice(-5),});
-      }, 4000);
-
+        this.setState({ intervalIDs: this.state.intervalIDs.slice(-5), });
+      }, 6000);
     }
-
   }
 
   componentDidMount() {
-
-    setTimeout(() => {
-      this.setState({
-      dinoeye: document.querySelector('#' + this.props.dino + ' #closed-eye'),
-      dinomouth: document.querySelector('#' + this.props.dino + ' #mouth-group'),
-    });
-      this.eyeBlink();
-    }, 4000);
-
+    this.getDinoSelectorsAndStartBlink();
   }
 
   componentWillUnmount() {
     for (let i = 0; i < this.state.intervalIDs.length; i++) {
       window.clearInterval(this.state.intervalIDs[i]);
     }
+  }
+
+  getDinoSelectorsAndStartBlink() {
+    setTimeout(() => {
+      this.setState({
+        dinoeye: document.querySelector('#' + this.props.dino + ' #closed-eye'),
+        dinomouth: document.querySelector('#' + this.props.dino + ' #mouth-group'),
+      });
+      this.eyeBlink();
+    }, 4000);
   }
 
   eyeBlink() {
@@ -80,12 +78,11 @@ export default class DinoMain extends Component {
     this.setState({ intervalIDs: intvalIDs });
   };
 
-
   mouthTalk() {
     this.state.dinomouth.classList.add("hidden");
     setTimeout(() => {
       this.state.dinomouth.classList.remove("hidden");
-    }, 200);
+    }, 500);
   }
 
   render() {

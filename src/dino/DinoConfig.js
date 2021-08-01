@@ -1,59 +1,57 @@
-export const dinoConfig = { 
+export const dinoConfig = {
   dinos: [
     {
-          name: "Triceratops",
+      name: "Triceratops",
     },
     {
-          name: "Tyrannosaurus",
+      name: "Tyrannosaurus",
     },
     {
-          name: "Sauropod"
+      name: "Sauropod"
     }
+  ],  
+  voices: [
+    {
+      dinoVoiceName: "Abby",
+      lang: "en-US",
+      voiceName: "Alex",
+      rate: 0.7,
+      pitch: 1.4,  
+    },
+    {
+      dinoVoiceName: "Bev",
+      lang: "en-US",
+      voiceName: "Victoria",
+      rate: 0.9,
+      pitch: 1.2,  
+    },
+    {
+      dinoVoiceName: "Carla",
+      lang: "en-US",
+      voiceName: "Victoria",
+      rate: 0.8,
+      pitch: 1.5,
+    },
+    {
+      dinoVoiceName: "Darla",
+      lang: "en-US",
+      voiceName: "Samantha",
+      rate: 0.7,
+      pitch: 1.8,
+    },
+    {
+      dinoVoiceName: "Elvis",
+      lang: "en-US",
+      voiceName: "Fred",
+      rate: 0.7,
+      pitch: 1.4,
+    },
+    {
+      dinoVoiceName: "Fred",
+      lang: "en-US",
+      voiceName: "Fred",
+      rate: 0.7,
+      pitch: 1.6,
+    },
   ],
-        
-      voices: [
-    { 
-          dinoName: "Abby",
-          lang: "en-US",
-          voiceName: "Alex",
-          rate: 0.6,
-          pitch: 1.4,
-    },
-    {
-          dinoName: "Benny",
-          lang: "en-US",
-          voiceName: "Fiona",
-          rate: 0.6,
-          pitch: 1.4,
-    },
-    {
-          dinoName: "Fred",
-          lang: "en-US",
-          voiceName: "Fred",
-          rate: 0.6,
-          pitch: 1.4,
-    },
-    {
-          dinoName: "Gary",
-          lang: "en-US",
-          voiceName: "Google US English",
-          rate: 0.6,
-          pitch: 1.4,
-    },
-    {
-          dinoName: "Darla",
-          lang: "en-US",
-          voiceName: "Samantha",
-          rate: 0.6,
-          pitch: 1.4,
-    },
-    {
-          dinoName: "Carl",
-          lang: "en-US",
-          voiceName: "Victoria",
-          rate: 0.6,
-          pitch: 1.4,
-    },
-  ],
-  
 };
